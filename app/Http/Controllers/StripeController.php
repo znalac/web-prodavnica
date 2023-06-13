@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Mail;
 use Omnipay\Omnipay;
 use Ibericode\Vat\Rates;
 use Illuminate\Http\Client\Request as ClientRequest;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class StripeController extends Controller
 {
@@ -122,6 +124,9 @@ class StripeController extends Controller
         }
       }
    
+
+
+      
     }
   public function confirm(Request $request)
   {
@@ -208,4 +213,9 @@ class StripeController extends Controller
     
     }
  } 
+ 
+     public function dhl(Request $request)  {
+      
+  }  
+
 }

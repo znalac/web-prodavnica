@@ -36,7 +36,7 @@ ELLEN RA LINDE Website
                 @foreach ($products as $product)
                     <div class="col-sm-3 mt-2">
                         <div class="card" style="width: 18rem;">
-                            <a href="/product/{{ $product->id }}"><img src="/images/{{$product->image1}}" class="card-img-top img-fluid one" ></a>
+                            <a href="/product/{{ $product->slug }}"><img src="/images/{{$product->image1}}" class="card-img-top img-fluid one" ></a>
                       
                             <div class="card-body">
                               <h5 class="card-title">{{ $product->product_name}}</h5>

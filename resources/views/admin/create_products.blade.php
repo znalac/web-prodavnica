@@ -27,6 +27,8 @@
           
           <input type="text"  name="price" class="form-control mt-1" placeholder="Product price format (10.00)" value="{{ old('price') }}">
             <input type="number" name="qty" class="form-control mt-1" placeholder="Quantity" min="1" step="1" value="{{ old('qty') }}" >
+         
+            
             <label for="image1">Image one</label><br>
             <input type="file" name="image1" class="form-control mt-1" >
             <label for="image2">Image two</label><br>

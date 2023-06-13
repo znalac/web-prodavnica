@@ -103,6 +103,7 @@ class HomeController extends Controller
       $cart->description = request('product_description');
       $cart->price = request('product_price');
       $cart->qty = request('qty');
+     
       
       if (isset($request->size)) {
          $cart->clothes_sizes = request('size');
@@ -110,13 +111,13 @@ class HomeController extends Controller
       } else {
         $cart->clothes_sizes = null;
       }
-      
+     
       $cart->image = request('product_image');
 
      
       $cart->save();
     
-      return redirect('/product/'.$product->id)->with('success','product added to the cart successfully');
+      return redirect('/product/'.$product->slug)->with('success','product added to the cart successfully');
     }
 
     public function hennaTatoo()

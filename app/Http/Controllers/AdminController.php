@@ -9,6 +9,7 @@ use App\Models\Dj;
 use App\Models\gallery;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Parcel;
 use App\Models\Product;
 use App\Models\Size;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -92,6 +93,7 @@ public function productsStore ()
     'product_description' =>'required',
      'price' => 'required',
      'qty' => 'required',
+   
      'image1' => 'required|mimes:jpg,png,jpeg',
      'image2' => 'required|mimes:jpg,png,jpeg',
      'image3' => 'required|mimes:jpg,png,jpeg',
@@ -167,6 +169,7 @@ $product = new Product();
  $product->description = request('product_description');
  $product->price = request('price');      
  $product->qty = request('qty');
+
  $product->image1 = $image1_name;
  $product->image2 = $image2_name;
  $product->image3 = $image3_name;
@@ -272,6 +275,7 @@ $product = new Product();
         'product_description' =>'required',
          'price' => 'required',
          'qty' => 'required',
+     
          
       ]);
 
@@ -279,6 +283,8 @@ $product = new Product();
       $product->description = request('product_description');
       $product->price = request('price');      
       $product->qty = request('qty');
+
+
 
       if (isset($request->image1)) {
         unlink(public_path('images/' . $product->image1));
@@ -604,6 +610,53 @@ public function invoice($orderId)
   
  $pdf= Pdf::loadView('admin.invoice',$data);
  return $pdf->download('Invoice.pdf');
+}
+
+
+public function parcels()
+{
+  $parcels = Parcel::all();
+ return view('admin.parcels',compact('parcels'));
+}
+public function parcelsAdd()
+{
+  return view('admin.create_parcels');
+}
+
+public function parcelsStore() {
+  $validate = request()->validate([
+    'parcel_size' => 'required',
+     
+  ]);
+
+
+    $parcel = new Parcel();
+    $parcel->p_size = request('parcel_size');
+    $parcel->save();
+    return redirect('/admin/parcel_size')->with('success',' Parcel size saved successfully');
+
+}
+
+function parcelsEdit(Parcel $parcel) {
+  return view('admin.edit_parcel',compact('parcel'));
+}
+
+ public function parcelsUpdate(Parcel $parcel)  {
+  $validate = request()->validate([
+    'parcel_size' => 'required',
+     
+  ]);
+
+  $parcel->p_size = request('parcel_size');
+  $parcel->update();
+  return redirect('/admin/parcel_size')->with('update',' Parcel size updated successfully');
+}
+
+ public function parcelsDelete(Parcel $parcel)  {
+  $parcel->delete();
+  return redirect('/admin/parcel_size')->with('delete',' Parcel size deleted successfully');
+
+  
 }
 
 }

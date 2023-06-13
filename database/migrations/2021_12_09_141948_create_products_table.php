@@ -16,9 +16,11 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
+            $table->string('slug');
             $table->text('description');
             $table->decimal('price',8,2)->unsigned();
             $table->integer('qty')->unsigned();
+           
             $table->string('image1');
             $table->string('image2');
             $table->string('image3');
@@ -31,6 +33,7 @@ class CreateProductsTable extends Migration
             $table->string('image10');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
+           
             $table->timestamps();
            
         });

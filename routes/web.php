@@ -62,7 +62,7 @@ Route::delete('/cart/{cart}', "HomeController@Deletecart");
 Route::get('/henna-tatoo',"HomeController@hennaTatoo");
 Route::get('/about-contact',"HomeController@about");
 Route::post('/about-contact',"HomeController@sendMail");
-Route::post('/cart',"StripeController@charge");
+Route::get('/charge',"StripeController@charge");
 Route::get('/confirm',"StripeController@confirm");
 
 Route::get('/category/{category}/products', "HomeController@categoryProducts");
@@ -72,7 +72,7 @@ Route::get('/admin-orders', 'AdminController@usersorders' );
 Route::put('/admin-orders/{order}', 'AdminController@updateStatus' );
 
 Route::get('/admin/shipped-orders', 'AdminController@shippedOrders' );
-Route::post('/paypal-payment','HomeController@paypalPayment');
+Route::get('/paypal-payment','HomeController@paypalPayment');
 Route::get('/success','HomeController@success');
 
 Route::get('/admin/dj', 'AdminController@dj' );
@@ -85,6 +85,14 @@ Route::get('/delete-account/{user}', 'UserController@delete' );
 Route::get('/privacy-policy', 'HomeController@privacy' );
 Route::get('/admin/orders/{id}', 'AdminController@invoice' );
 Route::post('/vat','StripeController@vat');
+Route::get('/dhl','StripeController@dhl');
+
+Route::get('/admin/parcel_size','AdminController@parcels');
+Route::get('/admin/create/parcels','AdminController@parcelsAdd');
+Route::post('/admin/create/parcels','AdminController@parcelsStore');
+Route::get('/admin/parcel/{parcel}/edit','AdminController@parcelsEdit');
+Route::put('/admin/parcel/{parcel}/edit','AdminController@parcelsUpdate');
+Route::delete('/admin/parcel/{parcel}','AdminController@parcelsDelete');
 Auth::routes();
 
 

@@ -18,12 +18,11 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "league/omnipay": "^3.2",
-        "mvdnbrk/dhlparcel-php-api": "^1.5",
-        "mvdnbrk/laravel-dhlparcel": "dev-php8",
         "omnipay/paypal": "^3.0",
         "omnipay/stripe": "^3.2",
-        "shippo/shippo-php": "^2.0",
-        "spatie/laravel-permission": "^5.4"
+        "rawilk/laravel-ups": "^2.1",
+        "spatie/laravel-permission": "^5.4",
+        "spatie/laravel-sluggable": "^3.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -68,7 +67,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

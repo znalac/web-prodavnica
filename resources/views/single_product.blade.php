@@ -23,12 +23,12 @@
         @else
           <span> Out of stock</span>
         @endif
-        <br> <span> Price: €{{number_format($product->price, 2, ',', '.')}}</span>
+        <br> <span> Prices do not include VAT. VAT will be calculated at checkout depending on the delivery address. <br>  Price: €{{number_format($product->price, 2, ',', '.')}}</span>
 
         @if ($product->qty>0 )
                 @if (Auth::check())
                     
-                <form action="/product/{{$product->id}}" method="post">
+                <form action="/product/{{$product->slug}}" method="post">
                     @csrf
                  
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -36,6 +36,7 @@
                     <input type="hidden" name="product_name" value="{{ $product->product_name }}">
                     <input type="hidden" name="product_description" value="{{ $product->description }}">
                     <input type="hidden" name="product_price" value="{{ $product->price}}">
+                  
                     <label for="qty"> Choose a quantity</label>
                     <input type="number" name="qty" value="1" step="1" min="1">
                  

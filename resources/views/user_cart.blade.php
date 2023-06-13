@@ -25,6 +25,44 @@
     <a href="https://www.instagram.com/ralindetattoo/"><i class="fa fa-facebook-official" aria-hidden="true"></i>
     </a>
 </div>
+
+<form action="/dhl" method="get">
+    <div classname="my-cart-custom">
+      <div>
+        <input type="text" name="name" placeholder="Your name" autocomplete="name">
+        <input type="email" name="email" placeholder="E-Mail" class="email">
+        <input type="text" name="delivery_adress" placeholder="Adress" autocomplete="street-address">
+        <input type="text" name="postal_code" placeholder="Postal code">
+        <input type="text" name="city" placeholder="City">
+        <input type="text" name="country" placeholder="Country">
+      </div>
+      <div>
+        <input type="checkbox" id="shipping-address-checkbox" name="shipping_address_checkbox">
+        <label for="shipping-address-checkbox">Ship to a different address</label>
+      </div>
+      <div id="shipping-address-fields" style="display: none;">
+        <input type="text" name="shipping_name" placeholder="Recipient's name" autocomplete="name">
+        <input type="text" name="shipping_adress" placeholder="Adress" autocomplete="street-address">
+        <input type="text" name="shipping_postal_code" placeholder="Postal code">
+        <input type="text" name="shipping_city" placeholder="City">
+        <input type="text" name="shipping_country" placeholder="Country">
+      </div>
+      <button type="submit">Calculate Shipping</button>
+      <div class="shipping-cost">
+        Shipping Cost: ${{ $shippingCost ?? '' }}
+      </div>
+      <div>
+        
+
+      </div>
+    </div>
+  </form>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
      <div class="row">
          <div class="col-sm-7">
             @php
@@ -118,16 +156,12 @@
               <button> Calculate vat </button>
             </form>
            
-            <form action="/cart" method="post" id="payment-form">
-                @csrf
-
-               
+            <form action="/charge" method="get" id="payment-form">
                 <label for="payment_method">Payment method</label> <br>
                 <label for="Card">Card</label>
                 <input type="radio" id="card" name="payment" value="card">
                 <label for="paypal">Paypal</label>
                 <input type="radio" id="paypal" name="payment" value="paypal">
-                
                 
                 <div class="payment-card"> 
                   <input type="hidden" name="user_id" value="{{Auth::id()}}" >
@@ -159,8 +193,9 @@
                 <span id="button-text">Pay now</span>
               </button>
                 <div id="messages"></div>
+             
             </div>
-                
+          
             </form>
             <div class="payment-paypal">
               @if ($error = Session::get('error') )
@@ -168,8 +203,8 @@
                   {{$error}}
                  </div>
               @endif
-              <form action="/paypal-payment" method="post">
-               @csrf
+              <form action="/paypal-payment" method="get">
+             
                <input type="hidden" name="user_id" value="{{Auth::id()}}" >
                <input type="hidden" name="total_price" id="" value="{{$total}}">
                <input type="text" name="name" placeholder="Your name">
@@ -191,6 +226,20 @@
 @endsection
 
 @section('js')
+<script>
+  $(document).ready(function() {
+    $('#shipping-address-checkbox').change(function() {
+      if ($(this).is(':checked')) {
+        $('#shipping-address-fields').show();
+      } else {
+        $('#shipping-address-fields').hide();
+      }
+    });
+  });
+</script>
+
+
+
 <script>
 
 const stripe = Stripe('pk_test_51Kf6n1JJ62elaW6DvIIeg3wdI2XJYVC2tj5M4makMXZWMcNVgUUWh9gKiJY6UUE6QKIApFSuo9pt3WUsU18MRkqQ004G2Li9Sg');

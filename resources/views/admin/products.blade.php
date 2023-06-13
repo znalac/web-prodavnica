@@ -17,7 +17,7 @@
                         
                         <th> Product name</th>
                         <th>Description</th>
-                        <th>Price</th>
+                        <th >Price</th>
                         <th>Quantity</th>
                         <th style="width:10%">image1</th>
                         <th style="width:10%">image2</th>
@@ -29,6 +29,8 @@
                         <th style="width:10%">image8</th>
                         <th style="width:10%">image9</th>
                         <th style="width:10%">image10</th>
+                    
+                       
                         <th >Action</th>
                     </tr>
                 </thead>
@@ -37,8 +39,8 @@
                     <tr>
                         <td>{{ $product->product_name }}</td>
                      
-                        <td style="width:65%" >{{ $product->description }}</td>
-                        <td style="width:20%" > € {{number_format($product->price, 2, ',', '.')}}  </td>
+                        <td  style="width: 65%;">{{ $product->description }}</td>
+                        <td>€{{number_format($product->price, 2, ',', '.')}}</td>
                         <td>{{ $product->qty }}</td>
                         <td style=""><img src="/images/{{$product->image1}}" class="img-fluid"></td>
                         <td><img src="/images/{{$product->image2}}" class="img-fluid"></td>
@@ -50,7 +52,7 @@
                         <td><img src="/images/{{$product->image8}}" class="img-fluid"></td>
                         <td><img src="/images/{{$product->image9}}" class="img-fluid"></td>
                         <td><img src="/images/{{$product->image10}}" class="img-fluid"></td>
-
+                     
                         <td>
                             
                             <a href="/admin/product/{{$product->id}}/edit" class="btn btn-primary btn-sm">Edit</a>

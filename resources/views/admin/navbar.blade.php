@@ -39,6 +39,9 @@
                             <a class="nav-link {{ Request::path() == 'admin/dj' ? 'active' :'' }} " href="/admin/dj">
                               Dj banner
                                  </a>
+                                 <a class="nav-link {{ Request::path() == 'admin/dj' ? 'active' :'' }} " href="/admin/parcel_size">
+                                        Parcel size
+                                       </a>
                     @endhasrole
                 </div>
             </div>
